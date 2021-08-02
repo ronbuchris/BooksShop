@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/main.css" />
+    <title>Books</title>
+  </head>
+  <body onload="onInit()">
+    <header>
+      <h1>Welcome to my bookshop</h1>
+    </header>
+
+    <section class="books-container">
+      <table class="books-table">
+        <thead>
+          <tr>
+            <td>Id</td>
+            <td class="sorted-by" onclick="onSortBy(this)">name</td>
+            <td class="sorted-by" onclick="onSortBy(this)">price</td>
+            <td>action</td>
+          </tr>
+        </thead>
+        <tbody class="table"></tbody>
+      </table>
+    </section>
+
+    <button class="prev-btn" onclick="onNextPage('prev')"><<</button>
+    <a class="pages"></a>
+    <button class="next-btn" onclick="onNextPage('next')">>></button>
+
+    <section class="add-new-book">
+      <h4 class="add-bool-title">Do you want to add your own book ?</h4>
+      <button class="add-book-btn" onclick="onAddYourOwnBook()">
+        click Here!
+      </button>
+    </section>
+
+    <section class="add-book" hidden>
+      <div>
+        <input name="bookName" type="text" placeholder="Name of the book" />
+      </div>
+      <div>
+        <input name="bookPrice" type="text" placeholder="Price of the book" />
+      </div>
+      <button class="add-book-btn" onclick="onAddBook()">Add it!</button>
+    </section>
+
+    <div class="modal" hidden></div>
+
+    <script src="js/services/util.service.js"></script>
+    <script src="js/services/storage.service.js"></script>
+    <script src="js/services/book.service.js"></script>
+    <script src="js/book.controller.js"></script>
+  </body>
+</html>
