@@ -1,41 +1,18 @@
 body {
   text-align: center;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-table {
-  display: inline;
-  border-collapse: collapse;
+  /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
 }
 
-table td {
-  width: 200px;
-  height: 30px;
-  border: 2px solid black;
+body.rtl {
+  direction: rtl;
+}
+
+table {
+  display: inline;
 }
 
 thead {
   background-color: rgba(207, 207, 199, 0.349);
-}
-
-.prev-btn,
-.next-btn,
-.page-btn {
-  margin: 20px 0;
-  border-style: unset;
-  background-color: white;
-  font-size: 1.1rem;
-  color: rgb(8, 111, 246);
-}
-.page-btn {
-  cursor: pointer;
-}
-.next-btn {
-  cursor: e-resize;
-  border-bottom: 2px solid rgb(8, 111, 246);
-}
-.prev-btn {
-  cursor: w-resize;
-  border-bottom: 2px solid rgb(8, 111, 246);
 }
 
 [name='bookName'],
@@ -43,8 +20,7 @@ thead {
   margin-bottom: 5px;
 }
 
-.add-book-btn,
-.close-modal-btn {
+.add-book-btn {
   border-radius: unset;
   background-color: rgb(93, 168, 93);
   border: none;
@@ -54,8 +30,7 @@ thead {
   font-size: 1.2rem;
   cursor: pointer;
 }
-.add-book-btn:hover,
-.close-modal-btn:hover {
+.add-book-btn:hover {
   box-shadow: 0 20px 32px 0 rgba(0, 0, 0, 0.24),
     0 20px 32px 0 rgba(0, 0, 0, 0.19);
 }
@@ -65,7 +40,7 @@ thead {
   background-color: rgb(207, 207, 199);
 }
 
-.modal {
+/* .modal {
   background-color: rgba(0, 0, 0, 0.678);
   padding: 10px;
   position: absolute;
@@ -83,7 +58,7 @@ thead {
 }
 .modal h6 {
   font-size: 2rem;
-}
+} */
 
 img {
   width: 200px;
@@ -93,31 +68,12 @@ img {
   font-size: 1.2rem;
   font-weight: 300;
 }
-
+/* 
 .action-btns {
   border: none;
   padding: 5px 10px;
   cursor: pointer;
-}
-
-.read {
-  background-color: rgb(81, 123, 212);
-}
-.read:hover {
-  background-color: rgba(81, 122, 212, 0.411);
-}
-.update {
-  background-color: rgb(232, 180, 69);
-}
-.update:hover {
-  background-color: rgba(232, 180, 69, 0.5);
-}
-.delete {
-  background-color: rgb(212, 81, 92);
-}
-.delete:hover {
-  background-color: rgba(212, 81, 92, 0.431);
-}
+} */
 
 .rate-book {
   padding: 8px 8px;

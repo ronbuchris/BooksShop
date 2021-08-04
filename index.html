@@ -4,53 +4,115 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
     <link rel="stylesheet" href="css/main.css" />
     <title>Books</title>
   </head>
   <body onload="onInit()">
-    <header>
-      <h1>Welcome to my bookshop</h1>
-    </header>
-
+    <div class="p-5 mb-4 bg-light rounded-3">
+      <div class="container-fluid py-5">
+        <h1 class="display-5 fw-bold" data-trans="title">Welcome to my bookshop</h1>
+      </div>
+    </div>
+    <select onchange="onSetLang(this.value)">
+      <option value="en">English</option>
+      <option value="he">עברית</option>
+    </select>
     <section class="books-container">
-      <table class="books-table">
+      <table class="table table-striped">
         <thead>
           <tr>
-            <td>Id</td>
-            <td class="sorted-by" onclick="onSortBy(this)">name</td>
-            <td class="sorted-by" onclick="onSortBy(this)">price</td>
-            <td>action</td>
+            <td data-trans="id">Id</td>
+            <td data-trans="name" class="sorted-by" onclick="onSortBy(this)">
+              name
+            </td>
+            <td data-trans="price" class="sorted-by" onclick="onSortBy(this)">
+              price
+            </td>
+            <td data-trans="action">action</td>
           </tr>
         </thead>
-        <tbody class="table"></tbody>
+        <tbody class="table-infos"></tbody>
       </table>
     </section>
+    <section>
 
-    <button class="prev-btn" onclick="onNextPage('prev')"><<</button>
-    <a class="pages"></a>
-    <button class="next-btn" onclick="onNextPage('next')">>></button>
+      <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center"></ul>
+      </section>
+    </nav>
 
     <section class="add-new-book">
-      <h4 class="add-bool-title">Do you want to add your own book ?</h4>
-      <button class="add-book-btn" onclick="onAddYourOwnBook()">
+      <h4 data-trans="wanna-add-book" class="add-bool-title">
+        Do you want to add your own book ?
+      </h4>
+      <button
+        data-trans="click-here"
+        class="add-book-btn"
+        onclick="onAddYourOwnBook()"
+      >
         click Here!
       </button>
     </section>
 
     <section class="add-book" hidden>
       <div>
-        <input name="bookName" type="text" placeholder="Name of the book" />
+        <input
+          data-trans="name-new-book"
+          name="bookName"
+          type="text"
+          placeholder="Name of the book"
+        />
       </div>
       <div>
-        <input name="bookPrice" type="text" placeholder="Price of the book" />
+        <input
+          data-trans="price-new-book"
+          name="bookPrice"
+          type="text"
+          placeholder="Price of the book"
+        />
       </div>
-      <button class="add-book-btn" onclick="onAddBook()">Add it!</button>
+      <button data-trans="add-book" class="add-book-btn" onclick="onAddBook()">
+        Add it!
+      </button>
     </section>
+    <div
+      class="modal fade"
+      id="staticBackdrop"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="staticBackdropLabel"
+      aria-hidden="true"
+    ><div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">The book that you choose</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Understood</button>
+        </div>
+      </div>
+    </div></div>
 
-    <div class="modal" hidden></div>
-
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+    <script src="lib/jquery.js"></script>
     <script src="js/services/util.service.js"></script>
     <script src="js/services/storage.service.js"></script>
+    <script src="js/services/i18n.service.js"></script>
     <script src="js/services/book.service.js"></script>
     <script src="js/book.controller.js"></script>
   </body>

@@ -2,7 +2,6 @@
 
 function onInit() {
   renderBooks();
-  renderBooks();
 }
 
 function renderBooks() {
@@ -11,12 +10,13 @@ function renderBooks() {
     return `<tr><td>${book.id}</td>
       <td>${book.name}</td>
       <td class="book-price-${book.id}">$${book.price}  <span hidden><input name="updatePrice${book.id}" type="text" placeholder="price" /><button onclick="update(${book.id})">update</button></span></td>
-      <td><button class="action-btns read" onclick="onReadBook(${book.id})">Read</button>
-      <button class="action-btns update" onclick="onUpdateBook(${book.id})">Update</button>
-      <button class="action-btns delete" onclick="onDeleteBook(${book.id})">Delete</button></td></tr>`;
+      <td> <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-trans="read" onclick="onReadBook(${book.id})">Read</button>
+      <button type="button" data-trans="update" class="btn btn-warning" onclick="onUpdateBook(${book.id})">Update</button>
+      <button type="button" class="btn btn-danger" data-trans="delete" onclick="onDeleteBook(${book.id})">Delete</button></td></tr>`;
   });
-  var elTable = document.querySelector('.table');
+  var elTable = document.querySelector('.table-infos');
   elTable.innerHTML = strHtmls.join('');
+  doTrans();
   renderNumsPages();
 }
 
@@ -59,29 +59,21 @@ function update(bookId) {
 
 function renderModal(book) {
   var strHtml = `<img src="${book.imgUrl}" />
-        <h5>${book.name}</h5>
-        <h6>Price: $${book.price}</h6>
-        <p>-Short cut story-</p>
-        <p>${book.shortcutStory}</p>
-        <button class="rate-book minus" onclick="onRateBook(this,${book.id})">-</button>
-        <input name="bookRate" type="text" value="${book.rate}" />
-        <button class="rate-book plus" onclick="onRateBook(this,${book.id})">+</button>
-        <div>
-        <button class="close-modal-btn" onclick="onCloseModal()">Close</button>
-      </div>`;
+  <h6>Price: $${book.price}</h6>
+  <p>-Shortcut story-</p>
+  <p>${book.shortcutStory}</p>
+      <button class="rate-book minus" onclick="onRateBook(this,${book.id})">-</button>
+      <input name="bookRate" type="text" value="${book.rate}" />
+       <button class="rate-book plus" onclick="onRateBook(this,${book.id})">+</button>`;
 
-  var elModal = document.querySelector('.modal');
+  var elModal = document.querySelector('.modal-body');
   elModal.innerHTML = strHtml;
-}
-
-function onCloseModal() {
-  document.querySelector('.modal').hidden = true;
 }
 
 function onReadBook(bookId) {
   var book = getBookById(bookId);
   renderModal(book);
-  document.querySelector('.modal').hidden = false;
+  // document.querySelector('.modal').hidden = false;
 }
 
 function renderNumsPages() {
@@ -89,10 +81,18 @@ function renderNumsPages() {
   var strHtmls = [];
   for (var i = pages; i > 0; i--) {
     strHtmls.unshift(
-      `<button class="page-btn" onclick="onNextPage(${i - 1})">${i}</button>`
+      `<li class="page-item"><a class="page-link" onclick="onNextPage(${
+        i - 1
+      })">${i}</a></li>`
     );
   }
-  var elPages = document.querySelector('.pages');
+  strHtmls.unshift(
+    `<li class="page-item"><a class="page-link" onclick="onNextPage('prev')">Previous</a></li>`
+  );
+  strHtmls.push(
+    ` <li class="page-item"><a class="page-link" onclick="onNextPage('next')">Next</a></li>`
+  );
+  var elPages = document.querySelector('.pagination');
   elPages.innerHTML = strHtmls.join('');
 }
 
@@ -110,4 +110,14 @@ function onSortBy(elBtn) {
   var value = elBtn.innerText;
   SortBy(value);
   renderBooks();
+}
+
+function onSetLang(lang) {
+  setLang(lang);
+  if (lang === 'he') {
+    document.body.classList.add('rtl');
+  } else {
+    document.body.classList.remove('rtl');
+  }
+  doTrans();
 }
